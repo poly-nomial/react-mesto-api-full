@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
   const { method } = req;
   const requestHeaders = req.headers["access-control-request-headers"];
   if (method === "OPTIONS") {
@@ -41,7 +41,7 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", origin);
   }
   next();
-});
+}); */
 
 app.use(
   "/signin",
