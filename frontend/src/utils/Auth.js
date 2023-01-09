@@ -38,6 +38,7 @@ export const login = (email, password) => {
 
 export const authorize = () => {
   return fetch(`${base_url}/users/me`, {
+    credentials: "include",
     method: "GET",
     headers: {
       "Content-Type": "application/json",
