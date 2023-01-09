@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-/*app.use(function (req, res, next) {
+app.use((req, res, next) => {
   const { method } = req;
   const requestHeaders = req.headers["access-control-request-headers"];
   if (method === "OPTIONS") {
@@ -33,15 +33,16 @@ app.use(requestLogger);
     res.header("Access-Control-Allow-Headers", requestHeaders);
     return res.end();
   }
+  next();
 });
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   const { origin } = req.headers;
   if (allowedCors.includes(origin)) {
     res.header("Access-Control-Allow-Origin", origin);
   }
   next();
-}); */
+});
 
 app.use(
   "/signin",
