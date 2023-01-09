@@ -1,0 +1,8 @@
+.sign-up__link {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    margin: 15px auto 0;
+    width: 358px;
+}

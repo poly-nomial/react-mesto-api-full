@@ -1,0 +1,6 @@
+.popup__photo-title {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: calc(14.52 / 12);
+    margin: 10px 0 0;
+}

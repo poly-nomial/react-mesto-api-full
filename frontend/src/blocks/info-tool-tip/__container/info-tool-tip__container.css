@@ -1,0 +1,7 @@
+.info-tool-tip__container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    min-width: 430px;
+    min-height: 330px;
+}

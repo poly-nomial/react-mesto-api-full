@@ -1,0 +1,7 @@
+.sign-up__title {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: calc(29 / 24);
+    margin: 0 auto 50px;
+    text-align: center;
+}

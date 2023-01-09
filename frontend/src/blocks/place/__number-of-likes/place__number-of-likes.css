@@ -1,0 +1,7 @@
+.place__number-of-likes {
+    color: black;
+    margin: 0;
+    text-align: center;
+    font-size: 13px;
+    line-height: calc(16 / 13);
+}

@@ -1,0 +1,12 @@
+.sign-up__button {
+    cursor: pointer;
+    width: 358px;
+    height: 50px;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 0;
+    border-radius: 2px;
+    font-size: 18px;
+    line-height: calc(21.78 / 18);
+}
