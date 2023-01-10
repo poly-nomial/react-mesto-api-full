@@ -17,7 +17,7 @@ import * as Auth from "../utils/Auth.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -36,8 +36,9 @@ function App() {
   function tokenCheck() {
     return Auth.authorize()
       .then((res) => {
-        if (res.data) {
-          setEmail(res.data.email);
+        if (res) {
+          setEmail(res.email);
+          setCurrentUser(res);
           handleLoggedIn();
           history.push("/");
         } else {
@@ -53,24 +54,26 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setCurrentUser(data);
-      })
-      .then(() => {
-        api
-          .getCardsFromServer()
-          .then((res) => {
-            setCards(res);
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (loggedIn) {
+      /*api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .then(() => {*/
+      api
+        .getCardsFromServer()
+        .then((data) => {
+          setCards(data);
+        })
+        .catch((err) => console.log(err));
+
+      //.catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
     api
       .changeLikeCardStatus(card._id, isLiked)
@@ -151,7 +154,7 @@ function App() {
 
   function handleSignOut() {
     handleLoggedIn();
-    localStorage.removeItem("token");
+    setCurrentUser({});
     history.push("/sign-in");
   }
 

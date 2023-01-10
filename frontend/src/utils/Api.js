@@ -8,14 +8,22 @@ export class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       credentials: "include",
       headers: this._headers,
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .then(({ data }) => data);
   }
 
   getCardsFromServer() {
     return fetch(`${this._baseUrl}/cards`, {
       credentials: "include",
       headers: this._headers,
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .then(({ data }) => {
+        return data;
+      });
   }
 
   editUserInfo(newUserName, newUserDescription) {
@@ -27,7 +35,9 @@ export class Api {
         name: newUserName,
         about: newUserDescription,
       }),
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .then(({ data }) => data);
   }
 
   postNewCard(newCard) {
@@ -39,7 +49,9 @@ export class Api {
         name: newCard.name,
         link: newCard.link,
       }),
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .then(({ data }) => data);
   }
 
   deleteCard(cardId) {
@@ -47,7 +59,9 @@ export class Api {
       credentials: "include",
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .then(({ data }) => data);
   }
 
   changeLikeCardStatus(cardId, isLiked) {
@@ -56,13 +70,21 @@ export class Api {
         credentials: "include",
         method: "DELETE",
         headers: this._headers,
-      }).then((res) => this._getResponseData(res));
+      })
+        .then((res) => {
+          return this._getResponseData(res);
+        })
+        .then(({ data }) => data);
     } else {
       return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         credentials: "include",
         method: "PUT",
         headers: this._headers,
-      }).then((res) => this._getResponseData(res));
+      })
+        .then((res) => {
+          return this._getResponseData(res);
+        })
+        .then(({ data }) => data);
     }
   }
 
@@ -74,7 +96,9 @@ export class Api {
       body: JSON.stringify({
         avatar: newAvatarLink,
       }),
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .then(({ data }) => data);
   }
 
   _getResponseData(res) {

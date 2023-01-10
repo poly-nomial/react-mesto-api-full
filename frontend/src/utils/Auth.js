@@ -35,7 +35,9 @@ export const login = (email, password) => {
       password,
       email,
     }),
-  }).then((res) => getResponseData(res));
+  })
+    .then((res) => _getResponseData(res))
+    .then(({ data }) => data);
 };
 
 export const authorize = () => {
@@ -45,10 +47,21 @@ export const authorize = () => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((res) => getResponseData(res));
+  })
+    .then((res) => _getResponseData(res))
+    .then(({ data }) => data);
 };
 
-const getResponseData = (res) => {
+export const logout = () => {
+  return fetch(`${base_url}}/signout`, {
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => _getResponseData(res));
+};
+
+const _getResponseData = (res) => {
   if (!res.ok) {
     return Promise.reject(`Ошибка: ${res.status}`);
   } else {

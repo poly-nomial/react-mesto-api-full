@@ -6,7 +6,7 @@ const { celebrate, Joi } = require("celebrate");
 const { errors } = require("celebrate");
 const userRouter = require("./routes/users");
 const cardRouter = require("./routes/cards");
-const { login, createUser } = require("./controllers/users");
+const { login, createUser, logout } = require("./controllers/users");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/NotFoundError");
 const {
@@ -69,6 +69,8 @@ app.use(auth);
 
 app.use("/users", userRouter);
 app.use("/cards", cardRouter);
+
+app.use("/signout", logout);
 
 app.use("/", (req, res, next) => {
   next(new NotFoundError("Неверный адрес"));
