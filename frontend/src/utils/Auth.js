@@ -2,6 +2,7 @@ export const base_url = "https://api.anothermesto.nomoredomains.club";
 
 export const register = (email, password) => {
   return fetch(`${base_url}/signup`, {
+    credentials: "include",
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -24,6 +25,7 @@ export const register = (email, password) => {
 
 export const login = (email, password) => {
   return fetch(`${base_url}/signin`, {
+    credentials: "include",
     method: "POST",
     headers: {
       Accept: "application/json",

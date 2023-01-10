@@ -157,8 +157,7 @@ function App() {
 
   function handleLoginSubmit(email, password) {
     Auth.login(email, password)
-      .then((data) => {
-        localStorage.setItem("token", data.token);
+      .then(() => {
         handleLoggedIn();
         setEmail(email);
         history.push("/");
