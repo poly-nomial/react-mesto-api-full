@@ -9,8 +9,8 @@ const ID_REGEX = /^[0-9a-f]{24}/;
 const allowedCors = [
   "http://anothermesto.nomoredomains.club",
   "https://anothermesto.nomoredomains.club",
-  "localhost:3000",
   "http://localhost:3000",
+  "localhost:3000",
 ];
 const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
 
