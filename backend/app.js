@@ -65,12 +65,12 @@ app.use(
   createUser
 );
 
+app.use("/signout", logout);
+
 app.use(auth);
 
 app.use("/users", userRouter);
 app.use("/cards", cardRouter);
-
-app.use("/signout", logout);
 
 app.use("/", (req, res, next) => {
   next(new NotFoundError("Неверный адрес"));

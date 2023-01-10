@@ -155,7 +155,9 @@ function App() {
   function handleSignOut() {
     handleLoggedIn();
     setCurrentUser({});
-    history.push("/sign-in");
+    Auth.logout().then(() => {
+      history.push("/sign-in");
+    });
   }
 
   function handleLoginSubmit(email, password) {
