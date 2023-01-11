@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { celebrate, Joi } = require("celebrate");
@@ -20,18 +19,10 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const PORT = 3000;
 
-const corsOptions = {
-  origin: "https://anothermesto.nomoredomains.club",
-  optionsSuccessStatus: 200,
-};
-
 const app = express();
-app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger);
-
-app.options("/", cors());
 
 // eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
@@ -40,9 +31,13 @@ app.use((req, res, next) => {
   const { origin } = req.headers;
   console.log(origin);
   res.header("Access-Control-Allow-Credentials", true);
-  if (allowedCors.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://anothermesto.nomoredomains.club"
+  );
+  //if (allowedCors.includes(origin)) {
+  //res.header("Access-Control-Allow-Origin", origin);
+  //}
   if (method === "OPTIONS") {
     res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
     res.header("Access-Control-Allow-Headers", requestHeaders);
