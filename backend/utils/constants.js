@@ -10,7 +10,7 @@ const allowedCors = [
   "http://anothermesto.nomoredomains.club",
   "https://anothermesto.nomoredomains.club",
   "https://anothermesto.nomoredomains.club/",
-  "http://anothermesto.nomoredomains.club/"
+  "http://anothermesto.nomoredomains.club/",
   "anothermesto.nomoredomains.club",
   "http://localhost:3000",
   "localhost:3000",
