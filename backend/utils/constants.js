@@ -7,13 +7,11 @@ const FORBIDDEN_ERROR = 403;
 const URL_REGEX = /^https?:\/\/(www\.)?[\w\-._~:/?#[\]@!$&'()*+,;=]+$/;
 const ID_REGEX = /^[0-9a-f]{24}/;
 const allowedCors = [
-  "http://anothermesto.nomoredomains.club",
   "https://anothermesto.nomoredomains.club",
-  "https://anothermesto.nomoredomains.club/",
-  "http://anothermesto.nomoredomains.club/",
+  "http://anothermesto.nomoredomains.club",
   "anothermesto.nomoredomains.club",
-  "http://localhost:3000",
   "localhost:3000",
+  "http://localhost:3000",
 ];
 const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
 const DublicateErrorCode = 11000;
