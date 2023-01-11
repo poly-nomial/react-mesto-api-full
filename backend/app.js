@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { celebrate, Joi } = require("celebrate");
@@ -25,6 +26,7 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
+// eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
   const { method } = req;
   const requestHeaders = req.headers["access-control-request-headers"];

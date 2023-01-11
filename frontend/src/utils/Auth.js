@@ -53,7 +53,7 @@ export const authorize = () => {
 };
 
 export const logout = () => {
-  return fetch(`${base_url}}/signout`, {
+  return fetch(`${base_url}/signout`, {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",

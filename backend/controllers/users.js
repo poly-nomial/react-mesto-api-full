@@ -1,13 +1,15 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
-const { AUTHORIZATION_ERROR } = require("../utils/constants");
+const {
+  AUTHORIZATION_ERROR,
+  DublicateErrorCode,
+} = require("../utils/constants");
 const ServerError = require("../errors/ServerError");
 const NotFoundError = require("../errors/NotFoundError");
 const InputError = require("../errors/InputError");
 const ConflictError = require("../errors/ConflictError");
-
-const DublicateErrorCode = 11000;
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
@@ -137,9 +139,13 @@ module.exports.login = (req, res) => {
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, "my-secret-friend", {
-        expiresIn: "7d",
-      });
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
+        {
+          expiresIn: "7d",
+        }
+      );
       res
         .cookie("jwt", token, { maxAge: 3600000, httpOnly: true })
         .send({ message: "Авторизация успешна" });

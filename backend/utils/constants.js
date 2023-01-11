@@ -13,6 +13,7 @@ const allowedCors = [
   "localhost:3000",
 ];
 const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+const DublicateErrorCode = 11000;
 
 module.exports = {
   SERVER_ERROR,
@@ -25,4 +26,5 @@ module.exports = {
   ID_REGEX,
   allowedCors,
   DEFAULT_ALLOWED_METHODS,
+  DublicateErrorCode,
 };

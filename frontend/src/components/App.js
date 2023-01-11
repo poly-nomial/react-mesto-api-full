@@ -50,27 +50,19 @@ function App() {
   }
 
   React.useEffect(() => {
-    tokenCheck();
-  }, []);
-
-  React.useEffect(() => {
     if (loggedIn) {
-      /*api
-        .getUserInfo()
-        .then((data) => {
-          setCurrentUser(data);
-        })
-        .then(() => {*/
       api
         .getCardsFromServer()
         .then((data) => {
           setCards(data);
         })
         .catch((err) => console.log(err));
-
-      //.catch((err) => console.log(err));
     }
   }, [loggedIn]);
+
+  React.useEffect(() => {
+    tokenCheck();
+  }, []);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i === currentUser._id);
@@ -163,9 +155,12 @@ function App() {
   function handleLoginSubmit(email, password) {
     Auth.login(email, password)
       .then(() => {
-        handleLoggedIn();
-        setEmail(email);
-        history.push("/");
+        api.getUserInfo().then((res) => {
+          handleLoggedIn();
+          setEmail(res.email);
+          setCurrentUser(res);
+          history.push("/");
+        });
       })
       .catch((err) => console.log(err));
   }
