@@ -33,12 +33,9 @@ app.use((req, res, next) => {
   const { origin } = req.headers;
   console.log(origin);
   res.header("Access-Control-Allow-Credentials", true);
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://anothermesto.nomoredomains.club"
-  );
   if (allowedCors.includes(origin)) {
     res.header("Access-Control-Allow-Origin", origin);
+    res.header("Vary", origin);
   }
   if (method === "OPTIONS") {
     res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
