@@ -20,11 +20,18 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const PORT = 3000;
 
+const corsOptions = {
+  origin: "https://anothermesto.nomoredomains.club",
+  optionsSuccessStatus: 200,
+};
+
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger);
+
+app.options("/", cors());
 
 // eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
