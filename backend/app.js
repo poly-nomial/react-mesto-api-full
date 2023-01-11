@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { celebrate, Joi } = require("celebrate");
@@ -23,7 +24,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-
+app.use(cors());
 app.use(requestLogger);
 
 // eslint-disable-next-line consistent-return
