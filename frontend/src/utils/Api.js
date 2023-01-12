@@ -111,7 +111,7 @@ export class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.anothermesto.nomoredomains.club",
+  baseUrl: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
   },

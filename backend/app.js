@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
-console.log(process.env);
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { celebrate, Joi } = require("celebrate");
@@ -27,10 +26,7 @@ app.use((req, res, next) => {
   const requestHeaders = req.headers["access-control-request-headers"];
   //const { origin } = req.headers;
   res.header("Access-Control-Allow-Credentials", true);
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://anothermesto.nomoredomains.club"
-  );
+  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
   //if (allowedCors.includes(origin)) {
   //res.header("Access-Control-Allow-Origin", origin);
   //}

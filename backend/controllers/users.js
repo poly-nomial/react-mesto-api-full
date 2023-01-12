@@ -11,34 +11,6 @@ const InputError = require("../errors/InputError");
 const ConflictError = require("../errors/ConflictError");
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-module.exports.getUsers = (req, res, next) => {
-  User.find({})
-    .then((users) => res.status(200).send({ data: users }))
-    .catch(() => {
-      next(new ServerError("На сервере произошла ошибка"));
-    });
-};
-
-module.exports.getOneUser = (req, res, next) => {
-  User.findById(req.params.userId)
-    .then((user) => {
-      if (user === null) {
-        throw new NotFoundError("Пользователь не найден");
-      } else {
-        res.status(200).send({ data: user });
-      }
-    })
-    .catch((e) => {
-      if (e.name === "CastError") {
-        next(new InputError("Переданы некорректные данные"));
-      }
-      if (e.name === "NotFoundError") {
-        next(e);
-      }
-      next(new ServerError("На сервере произошла ошибка"));
-    });
-};
-
 module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
@@ -51,8 +23,9 @@ module.exports.getCurrentUser = (req, res, next) => {
     .catch((e) => {
       if (e.name === "NotFoundError") {
         next(e);
+      } else {
+        next(new ServerError("На сервере произошла ошибка"));
       }
-      next(new ServerError("На сервере произошла ошибка"));
     });
 };
 
@@ -81,11 +54,11 @@ module.exports.createUser = (req, res, next) => {
     .catch((e) => {
       if (e.name === "ValidationError") {
         next(new InputError("Переданы некорректные данные"));
-      }
-      if (e.code === DublicateErrorCode) {
+      } else if (e.code === DublicateErrorCode) {
         next(new ConflictError("Пользователь с таким адресом уже существует"));
+      } else {
+        next(new ServerError("На сервере произошла ошибка"));
       }
-      next(new ServerError("На сервере произошла ошибка"));
     });
 };
 

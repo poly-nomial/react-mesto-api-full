@@ -1,4 +1,4 @@
-export const base_url = "https://api.anothermesto.nomoredomains.club";
+export const base_url = "http://localhost:3000";
 
 export const register = (email, password) => {
   return fetch(`${base_url}/signup`, {
