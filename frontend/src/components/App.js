@@ -53,6 +53,7 @@ function App() {
       api
         .getCardsFromServer()
         .then((data) => {
+          data.reverse();
           setCards(data);
         })
         .catch((err) => console.log(err));

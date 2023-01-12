@@ -26,7 +26,10 @@ app.use((req, res, next) => {
   const requestHeaders = req.headers["access-control-request-headers"];
   //const { origin } = req.headers;
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://anothermesto.nomoredomains.club"
+  );
   //if (allowedCors.includes(origin)) {
   //res.header("Access-Control-Allow-Origin", origin);
   //}
