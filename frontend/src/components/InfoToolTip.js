@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import registerCheck from "../images/RegisterCheck.png";
 import registerFail from "../images/RegisterFail.png";
 
-function InfoToolTip({ isRegistered, onClose, isOpen, errorMessage }) {
+function InfoToolTip({ isRegistered, onClose, isOpen }) {
   const history = useHistory();
 
   function redirect() {
@@ -32,7 +32,9 @@ function InfoToolTip({ isRegistered, onClose, isOpen, errorMessage }) {
               src={registerFail}
               alt="Крестик провала"
             />
-            <h2 className="info-tool-tip__title">{errorMessage}</h2>
+            <h2 className="info-tool-tip__title">
+              Что-то пошло не так! Попробуйте ещё раз
+            </h2>
           </>
         )}
         <button

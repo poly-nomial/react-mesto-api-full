@@ -29,7 +29,6 @@ function App() {
   const [userEmail, setEmail] = React.useState("");
   const [cards, setCards] = React.useState([]);
   const [isRegistered, setRegistered] = React.useState(null);
-  const [errorMessage, setErrorMessage] = React.useState("");
 
   const history = useHistory();
 
@@ -172,7 +171,6 @@ function App() {
       })
       .catch((err) => {
         setRegistered(false);
-        setErrorMessage(err);
       })
       .finally(() => {
         openToolTip();
@@ -233,7 +231,6 @@ function App() {
           isRegistered={isRegistered}
           onClose={closeAllPopups}
           isOpen={isInfoToolTipOpen}
-          errorMessage={errorMessage}
         />
       </div>
     </CurrentUserContext.Provider>

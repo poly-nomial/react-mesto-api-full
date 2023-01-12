@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+console.log(process.env);
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { celebrate, Joi } = require("celebrate");
@@ -10,11 +11,7 @@ const cardRouter = require("./routes/cards");
 const { login, createUser, logout } = require("./controllers/users");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/NotFoundError");
-const {
-  URL_REGEX,
-  allowedCors,
-  DEFAULT_ALLOWED_METHODS,
-} = require("./utils/constants");
+const { URL_REGEX, DEFAULT_ALLOWED_METHODS } = require("./utils/constants");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const PORT = 3000;
@@ -28,8 +25,7 @@ app.use(requestLogger);
 app.use((req, res, next) => {
   const { method } = req;
   const requestHeaders = req.headers["access-control-request-headers"];
-  const { origin } = req.headers;
-  console.log(origin);
+  //const { origin } = req.headers;
   res.header("Access-Control-Allow-Credentials", true);
   res.header(
     "Access-Control-Allow-Origin",
