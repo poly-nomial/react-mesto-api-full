@@ -4,7 +4,9 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 function Card(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const isOwn = props.card.owner._id === currentUser._id;
+  const isOwn =
+    props.card.owner === currentUser._id ||
+    props.card.owner._id === currentUser._id;
 
   const cardDeleteButtonClassName = `place__delete-button ${
     isOwn ? "" : "place__delete-button_hidden"
