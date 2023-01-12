@@ -15,6 +15,8 @@ module.exports = (req, res, next) => {
 
   let payload;
 
+  console.log(NODE_ENV);
+
   try {
     payload = jwt.verify(
       token,
