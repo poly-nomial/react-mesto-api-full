@@ -11,7 +11,15 @@
 
 ---
 
-![Страница авторизации]()
+![Страница авторизации](/screenshots/login-page.png?raw=true)
+
+---
+
+![Главная страница](/screenshots/main-page.png?raw=true)
+
+---
+
+![Попап профиля](/screenshots/profile-popup.png?raw=true)
 
 ---
 
